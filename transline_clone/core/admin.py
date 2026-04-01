@@ -45,3 +45,8 @@ admin.site.register(AboutPage)
 admin.site.register(Chairman)
 admin.site.register(TeamMember)
 admin.site.register(AboutLocation)
+
+
+from .models import Certification
+
+admin.site.register(Certification)

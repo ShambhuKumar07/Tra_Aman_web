@@ -200,3 +200,14 @@ class AboutLocation(models.Model):
 
     def __str__(self):
         return self.city
+
+
+
+class Certification(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    icon = models.CharField(max_length=10, blank=True)
+    pdf = models.FileField(upload_to='certifications/', blank=True, null=True)
+
+    def __str__(self):
+        return self.title

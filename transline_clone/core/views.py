@@ -4,19 +4,14 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from .models import *
 
-# def home(request):
-#     return render(request, 'home.html', {
-#         'banners': Banner.objects.all(),
-#         'services': Service.objects.all(),
-#         'products': Product.objects.all(),
-#         'industries': Industry.objects.all(),
-#         'about_items': About.objects.all(),   # 🔥 ADD THIS
-#     })
+from .models import Certification
 
+ 
 
 def home(request):
     about_items = About.objects.all()
     main_about = About.objects.filter(is_main=True).first()  # 🔥 controlled content
+    certifications = Certification.objects.all()
 
     return render(request, 'home.html', {
         'banners': Banner.objects.all(),
@@ -25,21 +20,11 @@ def home(request):
         'industries': Industry.objects.all(),
         'about_items': about_items,
         'main_about': main_about,
+        'certifications': certifications,
     })
 from django.http import JsonResponse
 
-# def contact_view(request):
-#     if request.method == "POST":
-#         Contact.objects.create(
-#             name=request.POST.get('name'),
-#             email=request.POST.get('email'),
-#             message=request.POST.get('message')
-#         )
-#         return JsonResponse({'status': 'success'})
-
-#     return render(request, 'contact.html')
-
-
+ 
 
 from .models import ContactInfo
 
@@ -62,9 +47,6 @@ def contact_view(request):
     return render(request, "contact.html", {
         "contact_info": contact_info
     })
-
-
-
 
 
 
@@ -93,21 +75,7 @@ def career_view(request):
         "locations": locations
     })
 
-
-# def career_view(request):
-#     if request.method == "POST":
-#         Career.objects.create(
-#             name=request.POST['name'],
-#             email=request.POST['email'],
-#             resume=request.FILES['resume']
-#         )
-#         return redirect('home')
-
-#     return render(request, 'career.html')
-
-
-
-
+ 
 def about_view(request):
     about = AboutPage.objects.first()
     chairman = Chairman.objects.first()
